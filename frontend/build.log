@@ -1,0 +1,43 @@
+
+> frontend@0.1.0 build
+> next build
+
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\uni info\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\uni info\frontend\package-lock.json
+
+▲ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 1 errors:
+./frontend/node_modules/@splinetool/react-spline/dist/react-spline.js:4:1
+Module not found: Can't resolve '@splinetool/runtime'
+[0m [90m 2 |[39m [36mimport[39m { jsx [36mas[39m f[33m,[39m jsxs [36mas[39m z[33m,[39m [33mFragment[39m [36mas[39m [33mD[39m } [36mfrom[39m [32m"react/jsx-runtime"[39m[33m;[39m
+ [90m 3 |[39m [36mimport[39m { forwardRef [36mas[39m [33mU[39m[33m,[39m useRef [36mas[39m [33mF[39m[33m,[39m useState [36mas[39m l[33m,[39m useEffect [36mas[39m [33mH[39m } [36mfrom[39m [32m"react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { [33mApplication[39m [36mas[39m [33mI[39m } [36mfrom[39m [32m"@splinetool/runtime"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 5 |[39m [36mimport[39m [33mP[39m [36mfrom[39m [32m"./ParentSize.js"[39m[33m;[39m
+ [90m 6 |[39m [36mconst[39m [33mG[39m [33m=[39m [33mU[39m(
+ [90m 7 |[39m   ({[0m
+
+
+
+Import trace:
+  Client Component Browser:
+    ./frontend/node_modules/@splinetool/react-spline/dist/react-spline.js [Client Component Browser]
+    ./frontend/components/SplineBackground.tsx [Client Component Browser]
+    ./frontend/components/HeroSection.tsx [Client Component Browser]
+    ./frontend/app/page.tsx [Client Component Browser]
+    ./frontend/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at ./frontend/node_modules/ (splinetool/react-spline/dist/react-spline.js:4:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
