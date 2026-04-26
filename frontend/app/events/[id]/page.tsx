@@ -91,6 +91,7 @@ export default function EventDetailPage({ params }: Props) {
                                     fill
                                     className={`object-cover ${isPast ? 'grayscale-[20%]' : ''}`}
                                     priority
+                                    unoptimized
                                 />
                             ) : (
                                 <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">

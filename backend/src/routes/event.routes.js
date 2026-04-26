@@ -14,14 +14,21 @@ try {
         process.env.CLOUDINARY_CLOUD_NAME &&
         process.env.CLOUDINARY_CLOUD_NAME !== 'your_cloud_name';
 
+    console.log('Cloudinary configured:', cloudinaryConfigured);
+    console.log('Cloud name:', process.env.CLOUDINARY_CLOUD_NAME);
+
     if (cloudinaryConfigured) {
         const { storage } = require('../config/cloudinary');
         upload = multer({ storage });
+        console.log('Using Cloudinary storage for file uploads');
     } else {
         upload = multer({ storage: multer.memoryStorage() });
+        console.log('Using memory storage (Cloudinary not configured)');
     }
 } catch (e) {
+    console.error('Cloudinary configuration error:', e.message);
     upload = multer({ storage: multer.memoryStorage() });
+    console.log('Falling back to memory storage due to error');
 }
 
 // ⚠️ IMPORTANT: Specific named routes MUST come before /:id routes

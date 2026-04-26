@@ -84,6 +84,8 @@ const createEvent = async (req, res) => {
             registrationLink, status, featured, tags,
         } = req.body;
 
+        console.log('File upload info:', req.file ? { path: req.file.path, filename: req.file.filename } : 'No file uploaded');
+
         const poster = req.file ? req.file.path : '';
         const posterPublicId = req.file ? req.file.filename : '';
 
@@ -96,6 +98,8 @@ const createEvent = async (req, res) => {
             poster, posterPublicId,
             createdBy: req.user._id,
         });
+
+        console.log('Event created with poster:', poster);
 
         // Create in-app notifications for all students
         const students = await User.find({ role: 'student', notificationsEnabled: true });
@@ -129,6 +133,11 @@ const updateEvent = async (req, res) => {
         if (!event) return res.status(404).json({ message: 'Event not found' });
 
         const updates = { ...req.body };
+
+        // Remove poster and posterPublicId from updates - they should only come from file upload
+        delete updates.poster;
+        delete updates.posterPublicId;
+
         if (updates.featured !== undefined) {
             updates.featured = updates.featured === 'true' || updates.featured === true;
         }
@@ -138,6 +147,7 @@ const updateEvent = async (req, res) => {
 
         // Handle new poster upload
         if (req.file) {
+            console.log('Updating poster with file:', req.file.path);
             // Delete old poster from cloudinary if configured
             await safeCloudinaryDelete(event.posterPublicId);
             updates.poster = req.file.path || '';

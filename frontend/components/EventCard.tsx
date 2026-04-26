@@ -54,7 +54,8 @@ export default function EventCard({ event, variant = 'default' }: EventCardProps
                                 src={event.poster}
                                 alt={event.title}
                                 fill
-                                className={`object-cover transition-transform duration-500 group-hover:scale-105 ${isPast ? 'grayscale-[30%]' : ''}`}
+                                className={`object-cover ${isPast ? 'grayscale-[30%]' : ''}`}
+                                unoptimized
                             />
                         ) : (
                             <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
@@ -106,7 +107,7 @@ export default function EventCard({ event, variant = 'default' }: EventCardProps
                     transition={{ duration: 0.2 }}
                     className="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-colors group"
                 >
-                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-xl flex-shrink-0 ${colorClass.replace('text-', 'bg-').split(' ')[0]} bg-opacity-20`}>
+                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-xl flex-shrink-0 bg-gray-100 text-gray-600`}>
                         {TYPE_ICONS[event.eventType] || '📅'}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -139,6 +140,7 @@ export default function EventCard({ event, variant = 'default' }: EventCardProps
                             alt={event.title}
                             fill
                             className={`object-cover transition-transform duration-500 group-hover:scale-105 ${isPast ? 'grayscale-[20%]' : ''}`}
+                            unoptimized
                         />
                     ) : (
                         <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">

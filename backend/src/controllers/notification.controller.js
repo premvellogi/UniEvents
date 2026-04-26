@@ -93,7 +93,7 @@ const getLatestBroadcast = async (req, res) => {
             .select('message createdAt');
         if (!latest) return res.json({ message: null });
         res.json({ message: latest.message, createdAt: latest.createdAt });
-    } catch {
+    } catch (error) {
         res.json({ message: null });
     }
 };

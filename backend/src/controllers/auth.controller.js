@@ -9,7 +9,7 @@ const register = async (req, res) => {
         const { name, email, password, department } = req.body;
 
         // Validate email domain
-        const allowedDomain = process.env.ALLOWED_EMAIL_DOMAIN || 'university.edu';
+        const allowedDomain = process.env.ALLOWED_EMAIL_DOMAIN || 'jainuniversity.ac.in';
         const emailDomain = email.split('@')[1];
         if (emailDomain !== allowedDomain) {
             return res.status(400).json({

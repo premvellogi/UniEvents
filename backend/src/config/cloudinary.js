@@ -8,7 +8,7 @@ cloudinary.config({
 });
 
 const storage = new CloudinaryStorage({
-    cloudinary,
+    cloudinary: cloudinary,
     params: {
         folder: 'uni-events',
         allowed_formats: ['jpg', 'jpeg', 'png', 'webp'],

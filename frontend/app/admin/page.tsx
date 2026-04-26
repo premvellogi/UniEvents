@@ -109,14 +109,16 @@ export default function AdminDashboard() {
         setSubmitting(true);
         try {
             const fd = new FormData();
-            Object.entries(form).forEach(([k, v]) => fd.append(k, String(v)));
+            Object.entries(form).forEach(([k, v]) => {
+                if (k !== 'poster') fd.append(k, String(v));
+            });
             if (posterFile) fd.append('poster', posterFile);
 
             if (editId) {
-                await api.put(`/events/${editId}`, fd, { headers: { 'Content-Type': 'multipart/form-data' } });
+                await api.put(`/events/${editId}`, fd);
                 toast.success('Event updated!');
             } else {
-                await api.post('/events', fd, { headers: { 'Content-Type': 'multipart/form-data' } });
+                await api.post('/events', fd);
                 toast.success('Event created! Students notified 🎉');
             }
 
@@ -356,13 +358,13 @@ export default function AdminDashboard() {
                                             </div>
                                             <div>
                                                 <h3 className="font-semibold text-gray-900">Registered Students</h3>
-                                                <p className="text-xs text-gray-400">@jainuniversity.ac.in accounts</p>
+                                                <p className="text-xs text-gray-400">Student accounts</p>
                                             </div>
                                         </div>
                                         <p className="text-4xl font-bold text-gray-900 mb-1">{analytics?.students ?? '–'}</p>
                                         <p className="text-sm text-gray-500">Total enrolled students</p>
                                         <div className="mt-4 pt-4 border-t border-gray-50">
-                                            <p className="text-xs text-gray-500">Students can register with a <span className="font-semibold text-gray-700">@jainuniversity.ac.in</span> email and browse all campus events.</p>
+                                            <p className="text-xs text-gray-500">Students can register with their university email and browse all campus events.</p>
                                         </div>
                                     </div>
 
@@ -439,7 +441,7 @@ export default function AdminDashboard() {
                                                         <div className="flex items-center gap-3">
                                                             {ev.poster && (
                                                                 <div className="relative w-10 h-10 rounded-lg overflow-hidden flex-shrink-0">
-                                                                    <Image src={ev.poster} alt="" fill className="object-cover" />
+                                                                    <Image src={ev.poster} alt="" fill className="object-cover" unoptimized />
                                                                 </div>
                                                             )}
                                                             <div className="min-w-0">

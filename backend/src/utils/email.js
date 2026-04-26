@@ -24,6 +24,9 @@ const sendEventNotificationEmail = async (recipients, event) => {
             minute: '2-digit',
         });
 
+        const frontendUrl = process.env.CLIENT_URL || 'http://localhost:3000';
+        const eventPageUrl = `${frontendUrl}/events/${event._id}`;
+
         const mailOptions = {
             from: `"${process.env.FROM_NAME}" <${process.env.FROM_EMAIL}>`,
             bcc: recipients,
@@ -43,7 +46,8 @@ const sendEventNotificationEmail = async (recipients, event) => {
               <tr><td style="padding: 10px 0; border-bottom: 1px solid #f5f5f7; color: #6e6e73; font-size: 14px;">📅 Date & Time</td><td style="padding: 10px 0; border-bottom: 1px solid #f5f5f7; color: #1d1d1f; font-size: 14px; font-weight: 500;">${eventDate}</td></tr>
               <tr><td style="padding: 10px 0; color: #6e6e73; font-size: 14px;">📍 Venue</td><td style="padding: 10px 0; color: #1d1d1f; font-size: 14px; font-weight: 500;">${event.venue}</td></tr>
             </table>
-            ${event.registrationLink ? `<a href="${event.registrationLink}" style="display: block; text-align: center; background: #0071e3; color: #ffffff; padding: 14px 28px; border-radius: 12px; text-decoration: none; font-size: 16px; font-weight: 600; margin-bottom: 28px;">Register Now →</a>` : ''}
+            <a href="${eventPageUrl}" style="display: block; text-align: center; background: #0071e3; color: #ffffff; padding: 14px 28px; border-radius: 12px; text-decoration: none; font-size: 16px; font-weight: 600; margin-bottom: 28px;">View Event Details →</a>
+            ${event.registrationLink ? `<p style="text-align: center; color: #6e6e73; font-size: 14px; margin-bottom: 28px;">External registration link: <a href="${event.registrationLink}" style="color: #0071e3; text-decoration: underline;">${event.registrationLink}</a></p>` : ''}
             <p style="color: #aaaaaa; font-size: 12px; text-align: center;">You are receiving this because you are registered at UniEvents. Log in to manage your notification preferences.</p>
           </div>
         </div>
